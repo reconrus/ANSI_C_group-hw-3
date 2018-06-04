@@ -2,23 +2,31 @@
 // Created by puzankova 02.06.18
 //
 #include "bitMap.h"
-
-void setBitByNumber(int* array, int bit, int position)
-{
-	// array - pointer to the begining of the array
-	// position - number of the bit in the 'array'
-	// bit - have to be equal to 0 or 1
-	//
-	// this function changes bit with number 'position' to the 'bit'
-
-	/* YOUR CODE */
-}
+#include "math.h"
 
 int getBitByNumber(int* array, int position)
 {
-	// this function returns position's bit from the array 
+    int size  = 8*sizeof(int);
+    int n = position/size;
+    int k = array[n];
 
-	/* YOUR CODE */
+    n = (position)%size;
+    k = k >> (size - n - 1);
+    k = k & 1;
+    return k;
+}
+
+
+void setBitByNumber(int* array, int bit, int position)
+{
+    int size = 8*sizeof(int);
+    int n = position/size;
+
+    if(getBitByNumber(array, position) == bit) return;
+
+    int bitPos = size - 1 - (position%size);
+    int mask = 1 << bitPos;
+    array[n] ^= mask;
 }
 
 void setBitByAddress(void* position, int bit)
