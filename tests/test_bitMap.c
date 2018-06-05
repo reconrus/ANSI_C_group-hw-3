@@ -5,7 +5,7 @@
 
 START_TEST (test_setBitByNumber)
 {
-    int bitMap[]={0,1,0,1,1,0};
+    char bitMap[]={0,1,0,1,1,0};
     setBitByNumber(bitMap,1,0);
     ck_assert(getBitByNumber(bitMap,0)==1);
 }
@@ -13,22 +13,23 @@ END_TEST
 
 START_TEST (test_getBitByNumber)
 {
-    int bitMap[]={0,1,0,1,1,0};
+    char bitMap[]={0,1,0,1,1,0};
     ck_assert(getBitByNumber(bitMap,5)==0);
 }
 END_TEST
 
 START_TEST (test_setBitByAddress)
 {
-    int bitMap[]={0,1,0,1,1,0};
-    setBitByAddress(bitMap+2,1);
-    ck_assert(getBitByAddress(bitMap+2)==1);
+    char bitMap[]={88,0}; // 01011000
+    //int bitMap[]={0,1,0,1,1,0};
+    setBitByAddress(bitMap,1);
+    ck_assert(getBitByAddress(bitMap)==1);
 }
 END_TEST
 
 START_TEST (test_getBitByAddress)
 {
-    int bitMap[]={0,1,0,1,1,0};
+    char bitMap[]={0,1,0,1,1,0};
     ck_assert(getBitByAddress(bitMap+2)==0);
 }
 END_TEST

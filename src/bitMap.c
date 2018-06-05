@@ -6,43 +6,38 @@
 #include "bitMap.h"
 #include "math.h"
 
-int getBitByNumber(int* array, int position)
-{
-    int size  = 8*sizeof(int);
-    int n = position/size;
-    int k = array[n];
+int getBitByNumber(char *array, int position) {
+    char size = 8;
+    int n = position / size;
+    char bitPos = size - 1 - (position % size);
+    char k = (array[n] >> bitPos) & 1;
 
-    n = (position)%size;
-    k = k >> (size - n - 1);
-    k = k & 1;
-    return k;
+    return k ? 1 : 0;
 }
 
 
-void setBitByNumber(int* array, int bit, int position)
-{
-    int size = 8*sizeof(int);
-    int n = position/size;
+void setBitByNumber(char *array, int bit, int position) {
+    char size = 8;
+    int n = position / size;
 
-    if(getBitByNumber(array, position) == bit) return;
+    if (getBitByNumber(array, position) == bit) return;
 
-    int bitPos = size - 1 - (position%size);
-    int mask = 1 << bitPos;
+    char bitPos = size - 1 - (position % size);
+    char mask = 1 << bitPos;
     array[n] ^= mask;
 }
 
-void setBitByAddress(void* position, int bit)
-{
+void setBitByAddress(char *position, int bit) {
     char mask;
-    if(bit) {
+    if (bit) {
         mask = -128;
-        *((char*) position) |= mask;
-    }else {
+        *position |= mask;
+    } else {
         mask = 127;
-        *((char*) position) &= mask;
+        *position &= mask;
     }
 }
 
-int getBitByAddress(void* position) {
-    return *((char*) position)&(-128);
+int getBitByAddress(char *position) {
+    return (*position & (char) (-128)) ? 1 : 0;
 }

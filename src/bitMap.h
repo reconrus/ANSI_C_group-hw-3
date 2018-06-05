@@ -5,12 +5,12 @@
 #ifndef __BITMAP_H_
 #define __BITMAP_H_
 
-void setBitByNumber(int* array, int bit, int position);
+void setBitByNumber(char* array, int bit, int position);
 
-int getBitByNumber(int* array, int position);
+int getBitByNumber(char* array, int position);
 
-void setBitByAddress(void* position, int bit);
+void setBitByAddress(char* position, int bit);
 
-int getBitByAddress(void* position);
+int getBitByAddress(char* position);
 
 #endif //__BITMAP_H_
