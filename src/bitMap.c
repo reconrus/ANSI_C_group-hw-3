@@ -33,20 +33,16 @@ void setBitByNumber(int* array, int bit, int position)
 
 void setBitByAddress(void* position, int bit)
 {
-	if (position!=NULL&&position>=0&&(bit==0||bit==1)) {
-        *((int *) position) = bit;
+    char mask;
+    if(bit) {
+        mask = -128;
+        *((char*) position) |= mask;
+    }else {
+        mask = 127;
+        *((char*) position) &= mask;
     }
-    else{
-	    printf("Error! Try again\n");
-	}
 }
 
 int getBitByAddress(void* position) {
-    if (position != NULL) {
-        int res=*((int *) position);
-        return res;
-    }
-    else{
-        printf("Error, try again!\n");
-    }
+    return *((char*) position)&(-128);
 }
