@@ -1,32 +1,40 @@
 #include <check.h>
+#include <stdio.h>
 #include "bitMap.h"
+
 
 START_TEST (test_setBitByNumber)
 {
-    //YOUR CODE HERE
+    int bitMap[]={0,1,0,1,1,0};
+    setBitByNumber(bitMap,1,0);
+    ck_assert(getBitByNumber(bitMap,0)==1);
 }
 END_TEST
 
 START_TEST (test_getBitByNumber)
 {
-    //YOUR CODE HERE
+    int bitMap[]={0,1,0,1,1,0};
+    ck_assert(getBitByNumber(bitMap,5)==0);
 }
 END_TEST
 
 START_TEST (test_setBitByAddress)
 {
-    //YOUR CODE HERE
+    int bitMap[]={0,1,0,1,1,0};
+    setBitByAddress(bitMap+2,1);
+    ck_assert(getBitByAddress(bitMap+2)==1);
 }
 END_TEST
 
 START_TEST (test_getBitByAddress)
 {
-    //YOUR CODE HERE
+    int bitMap[]={0,1,0,1,1,0};
+    ck_assert(getBitByAddress(bitMap+2)==0);
 }
 END_TEST
 
 Suite *str_suite(void) {
-    Suite *suite = suite_create("priority queue");
+    Suite *suite = suite_create("BitMap");
     TCase *tcase = tcase_create("case");
     tcase_add_test(tcase, test_setBitByNumber);
     tcase_add_test(tcase, test_getBitByNumber);

@@ -1,6 +1,8 @@
 //
 // Created by puzankova 02.06.18
 //
+#include <stddef.h>
+#include <stdio.h>
 #include "bitMap.h"
 #include "math.h"
 
@@ -31,17 +33,20 @@ void setBitByNumber(int* array, int bit, int position)
 
 void setBitByAddress(void* position, int bit)
 {
-	// position - pointer to the bit to change
-	// bit - have to be equal to 0 or 1
-	//
-	// this function changes bit by memory address to 'bit'
-
-	/* YOUR CODE */
+	if (position!=NULL&&position>=0&&(bit==0||bit==1)) {
+        *((int *) position) = bit;
+    }
+    else{
+	    printf("Error! Try again\n");
+	}
 }
 
-int getBitByAddress(void* position)
-{
-	// this function returns first bit by memory address 'position'
-	
-	/* YOUR CODE */
+int getBitByAddress(void* position) {
+    if (position != NULL) {
+        int res=*((int *) position);
+        return res;
+    }
+    else{
+        printf("Error, try again!\n");
+    }
 }
